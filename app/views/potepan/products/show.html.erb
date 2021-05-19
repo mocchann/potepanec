@@ -1,18 +1,20 @@
+<%= provide(:title, @product.name) %>
+
 <!-- LIGHT SECTION -->
 <section class="lightSection clearfix pageHeader">
   <div class="container">
     <div class="row">
       <div class="col-xs-6">
         <div class="page-title">
-          <h2>Single Product</h2>
+          <h2><%= @product.name %></h2>
         </div>
       </div>
       <div class="col-xs-6">
         <ol class="breadcrumb pull-right">
           <li>
-            <a href="index.html">Home</a>
+            <%= link_to "Home", potepan_path %>
           </li>
-          <li class="active">Single Product</li>
+          <li class="active"><%= @product.name %></li>
         </ol>
       </div>
     </div>
@@ -28,7 +30,10 @@
           <div class="media-left productSlider">
             <div id="carousel" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
+              
                 <div class="item active" data-thumb="0">
+
+
                   <%= image_tag("img/products/signle-product/product-slide-big-01.jpg") %>
                 </div>
                 <div class="item" data-thumb="1">
@@ -40,6 +45,8 @@
                 <div class="item" data-thumb="3">
                   <%= image_tag("img/products/signle-product/product-slide-big-04.jpg") %>
                 </div>
+
+
               </div>
             </div>
             <div class="clearfix">
