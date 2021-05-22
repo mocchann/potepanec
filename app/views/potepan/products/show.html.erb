@@ -1,5 +1,4 @@
 <%= provide(:title, @product.name) %>
-
 <!-- LIGHT SECTION -->
 <section class="lightSection clearfix pageHeader">
   <div class="container">
@@ -20,7 +19,6 @@
     </div>
   </div>
 </section>
-
 <!-- MAIN CONTENT SECTION -->
 <section class="mainContent clearfix">
   <div class="container">
@@ -30,10 +28,10 @@
           <div class="media-left productSlider">
             <div id="carousel" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
-              <% @product.images.each_with_index do |image, i| %>
-                <div class="item <%= "active" if i.zero? %>" data-thumb="<%= 0 %>">
-                  <%= image_tag image.attachment(:large) %>
-                </div>
+                <% @product.images.each_with_index do |image, i| %>
+                  <div class="item <%= "active" if i.zero? %>" data-thumb="<%= 0 %>">
+                    <%= image_tag image.attachment(:large) %>
+                  </div>
                 <% end %>
               </div>
             </div>
