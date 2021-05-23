@@ -18,7 +18,7 @@ RSpec.describe 'Potepan::Products', type: :request do
       expect(assigns(:product)).to eq product
     end
 
-    it 'show.htmlにアクセスされる' do
+    it 'httpアクセスの成功' do
       expect(response).to have_http_status(:success)
     end
   end
