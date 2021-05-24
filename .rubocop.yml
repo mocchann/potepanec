@@ -17,6 +17,8 @@ AllCops:
     - Gemfile
     - Rakefile
     - channels/application_cable/*
+    - 'spec/spec_helper.rb'
+    - 'spec/system/potepan/products_spec.rb'
 
 MixinUsage:
   Include:
