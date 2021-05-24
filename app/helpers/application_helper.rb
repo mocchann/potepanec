@@ -1,6 +1,7 @@
 module ApplicationHelper
+  BASE_TITLE = "BIGBAG Store"
+  
   def full_title(page_title)
-    BASE_TITLE = "BIGBAG Store"
     if page_title.blank?
       BASE_TITLE
     else
