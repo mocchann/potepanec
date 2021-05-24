@@ -17,9 +17,5 @@ RSpec.describe 'Potepan::Products', type: :request do
     it '@productに値が入っている' do
       expect(assigns(:product)).to eq product
     end
-
-    it 'httpアクセスの成功' do
-      expect(response).to have_http_status(:success)
-    end
   end
 end
