@@ -2,8 +2,8 @@ require 'rails_helper'
 require 'spree/testing_support/factories'
 
 RSpec.describe 'Potepan::Products', type: :request do
-  let(:product) { FactoryBot.create(:product) }
-  let!(:related_products) { FactoryBot.create_list(:product, 5, name: 'testitem') }
+  let(:product) { create(:product) }
+  let!(:related_products) { create_list(:product, 5, name: 'testitem') }
 
   before do
     get potepan_product_path(product.id)
@@ -18,7 +18,7 @@ RSpec.describe 'Potepan::Products', type: :request do
       expect(assigns(:product)).to eq product
     end
 
-    it 'show.htmlにアクセスされる' do
+    it 'httpアクセスの成功' do
       expect(response).to have_http_status(:success)
     end
   end
