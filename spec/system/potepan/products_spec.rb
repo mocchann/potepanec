@@ -16,5 +16,4 @@ RSpec.describe 'Potepan::Products', type: :system do
       expect(page).to have_content product.display_price.to_s
     end
   end
-
 end
