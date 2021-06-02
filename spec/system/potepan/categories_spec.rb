@@ -7,7 +7,7 @@ RSpec.describe "Potepan::Categories", type: :system do
   let(:product1) { create(:product, name: 'shirts', taxon_ids: taxon.id) }
 
   before do
-    driven_by(:rack_test)
+    driven_by :selenium, using: :selenium_chrome_headless
     visit potepan_category_path(product.taxons.first.id)
   end
 
