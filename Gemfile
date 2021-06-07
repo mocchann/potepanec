@@ -51,8 +51,6 @@ group :development, :test do
   gem 'annotate'
   gem 'rails-controller-testing'
   gem 'rubocop-airbnb'
-  gem 'webdrivers'
-  gem 'selenium-webdriver'
 end
 
 group :development do
