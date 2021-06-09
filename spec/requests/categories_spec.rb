@@ -1,21 +1,36 @@
 require 'rails_helper'
 
-RSpec.describe "Potepan::Products", type: :request do
-  let(:taxonomy) { create(:taxonomy) }
-  let!(:product) { create(:product, taxons: [taxon]) }
-  let(:taxon) { create(:taxon, taxonomy: taxonomy) }
+RSpec.describe 'Potepan::Categories', type: :request do
+  describe "#show" do
+    let!(:taxonomy) { create(:taxonomy) }
+    let!(:taxon) { create(:taxon, taxonomy: taxonomy, parent: taxonomy.root) }
+    let!(:taxon_child) { create(:taxon, taxonomy: taxonomy, parent: taxon) }
+    let!(:product1) { create(:product, name: "correct product", taxons: [taxon_child]) }
+    let!(:product2) { create(:product, name: "incorrect product") }
 
-  before do
-    get potepan_category_path(taxon.id)
-  end
+    before do
+      get potepan_category_path(taxon_child.id)
+    end
 
-  it 'リクエストが成功する' do
-    expect(response.status).to eq 200
-  end
+    it "responds successfully" do
+      expect(response).to be_successful
+      expect(response).to have_http_status 200
+    end
 
-  it 'taxon名、product名、taxonomy名が表示される' do
-    expect(response.body).to include taxon.name
-    expect(response.body).to include product.name
-    expect(response.body).to include taxonomy.name
+    it "render show page" do
+      expect(response).to render_template :show
+    end
+
+    it "assigns taxonomies" do
+      expect(assigns(:taxonomies)).to include(taxonomy)
+    end
+
+    it "assigns taxon" do
+      expect(assigns(:taxon)).to eq(taxon_child)
+    end
+
+    it "assigns correct product" do
+      expect(assigns(:products)).to match_array(product1)
+    end
   end
 end

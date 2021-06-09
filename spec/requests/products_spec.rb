@@ -1,20 +1,25 @@
 require 'rails_helper'
-require 'spree/testing_support/factories'
 
 RSpec.describe 'Potepan::Products', type: :request do
-  let(:product) { create(:product) }
+  describe "#show" do
+    let(:taxon) { create(:taxon) }
+    let(:product) { create(:product, taxon_ids: taxon.id) }
 
-  before do
-    get potepan_product_path(product.id)
-  end
-
-  describe 'GET /show' do
-    it 'リクエストが成功する' do
-      expect(response.status).to eq 200
+    before do
+      get potepan_product_path(product.id)
     end
 
-    it '@productに値が入っている' do
+    it "responds successfully" do
+      expect(response).to be_successful
+      expect(response).to have_http_status "200"
+    end
+
+    it "assigns @product" do
       expect(assigns(:product)).to eq product
+    end
+
+    it "render show page" do
+      expect(response).to render_template "potepan/products/show"
     end
   end
 end
