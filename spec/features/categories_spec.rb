@@ -22,7 +22,7 @@ RSpec.feature "Categories", type: :feature do
       expect(page).to have_content categories.name
       expect(page).not_to have_content clothing.name
     end
-
+    
     within '.productBox' do
       expect(page).to have_content product2.name
       expect(page).to have_content product2.display_price
@@ -53,5 +53,22 @@ RSpec.feature "Categories", type: :feature do
       expect(page).not_to have_content product1.name
       expect(page).not_to have_content product1.display_price
     end
+  end
+
+  scenario "return to list page" do
+    visit potepan_product_path(product1.id)
+    within '.fa-reply'
+    click_on '一覧ページへ戻る'
+    expect(current_path).to eq potepan_category_path(bag.id)
+  end
+
+  scenario "the number of products matches the number of products listed" do
+    expect(all('.productbox').size).to eq taxon.products.count
+  end
+
+  scenario "products in different categories are not included" do
+    click_on bag.name
+    expect(page).not_to have_content product2.name
+    expect(page).not_to have_content product2.display_price
   end
 end

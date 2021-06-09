@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "Products", type: :feature do
   describe "display product details" do
-    given(:product) { create(:product) }
+    given(:taxon) { create(:taxon) }
+    given(:product) { create(:product, taxons: [taxon]) }
 
     background { visit potepan_product_path(product.id) }
 
