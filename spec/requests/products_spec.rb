@@ -1,25 +1,31 @@
 require 'rails_helper'
 
-RSpec.describe 'Potepan::Products', type: :request do
-  describe "#show" do
-    let(:taxon) { create(:taxon) }
-    let(:product) { create(:product, taxon_ids: taxon.id) }
+RSpec.describe "Products", type: :request do
+  let(:taxonomy) { create(:taxonomy) }
+  let(:taxon) { create(:taxon, name: "Taxon", taxonomy: taxonomy, parent: taxonomy.root) }
+  let(:product) { create(:product, taxons: [taxon]) }
 
-    before do
-      get potepan_product_path(product.id)
-    end
+  before do
+    get potepan_product_path(product.id)
+  end
 
-    it "responds successfully" do
-      expect(response).to be_successful
-      expect(response).to have_http_status "200"
-    end
+  it 'Success response is received' do
+    expect(response).to be_success
+  end
 
-    it "assigns @product" do
-      expect(assigns(:product)).to eq product
-    end
+  it 'Success display the product detail screen' do
+    expect(response).to have_http_status(200)
+  end
 
-    it "render show page" do
-      expect(response).to render_template "potepan/products/show"
-    end
+  it 'product name must be included' do
+    expect(response.body).to include product.name
+  end
+
+  it 'contains the product price' do
+    expect(response.body).to include product.display_price.to_s
+  end
+
+  it 'contains the product content' do
+    expect(response.body).to include product.description
   end
 end
