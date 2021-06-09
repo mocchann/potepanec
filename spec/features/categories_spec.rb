@@ -22,7 +22,7 @@ RSpec.feature "Categories", type: :feature do
       expect(page).to have_content categories.name
       expect(page).not_to have_content clothing.name
     end
-    
+
     within '.productBox' do
       expect(page).to have_content product2.name
       expect(page).to have_content product2.display_price
