@@ -60,7 +60,12 @@
       </div>
     </div>
     <div class="row productsContent">
-      <%= render "related_products" %>
+      <div class="col-xs-12">
+        <div class="page-header">
+          <h4>関連商品</h4>
+        </div>
+      </div>
+      <%= render partial: "related_products", collection: @related_products, as: 'related_product' %>
     </div>
   </div>
 </section>
