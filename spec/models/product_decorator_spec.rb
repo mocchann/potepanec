@@ -6,10 +6,6 @@ RSpec.describe Spree::ProductDecorator, type: :model do
   let(:product_unrelated) { create(:product, taxons: [taxon_unrelated]) }
   let!(:related_products) { create_list(:product, 4, taxons: [taxon]) }
 
-  it 'Only the number of cases specified as a constant can be obtained' do
-    expect(related_products.count).to eq 4
-  end
-
   it 'no unrelated products are included' do
     expect(product.related_products).not_to include product_unrelated.taxons
   end

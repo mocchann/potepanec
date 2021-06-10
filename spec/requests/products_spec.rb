@@ -4,7 +4,7 @@ RSpec.describe "Products", type: :request do
   let(:taxonomy) { create(:taxonomy) }
   let(:taxon) { create(:taxon, name: "Taxon", taxonomy: taxonomy, parent: taxonomy.root) }
   let(:product) { create(:product, taxons: [taxon]) }
-  let(:related_products) { create_list(:product, 5, taxons: [taxon]) }
+  let(:related_products) { create_list(:product, 4, taxons: [taxon]) }
 
   before do
     get potepan_product_path(product.id)
@@ -31,6 +31,6 @@ RSpec.describe "Products", type: :request do
   end
 
   it 'limit the acquisition of related products to four' do
-    expect(related_products).not_to eq Potepan::ProductsController::MAX_RELATED_PRODUCT_COUNT
+    expect(related_products.count).to eq Potepan::ProductsController::MAX_RELATED_PRODUCT_COUNT
   end
 end

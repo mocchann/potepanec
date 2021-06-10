@@ -26,6 +26,13 @@ RSpec.feature "Products", type: :feature do
           expect(page).to have_selector '.productBox h3', text: related_product.display_price
           expect(page).to have_link related_product.name
           expect(page).to have_link related_product.display_price
+        end
+      end
+    end
+
+    scenario 'click on related_product should transition' do
+      within('.productsContent') do
+        related_products.each do |related_product|
           click_link related_product.name, href: potepan_product_path(related_product.id)
           expect(current_path).to eq potepan_product_path(related_product.id)
           expect(page).to have_http_status(:success)
