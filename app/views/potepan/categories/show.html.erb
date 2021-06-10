@@ -1,0 +1,22 @@
+<% provide(:title, @taxon.name) %>
+<%= render "page_title", taxon_name: @taxon.name %>
+<!-- MAIN CONTENT SECTION -->
+<section class="mainContent clearfix productsContent">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-4 col-xs-12 sideBar">
+        <%= render "potepan/shared/categories_sidebar", taxonomies: @taxonomies %>
+        <%= render "potepan/shared/price_sidebar" %>
+        <%= render "potepan/shared/color_sidebar" %>
+        <%= render "potepan/shared/size_sidebar" %>
+      </div>
+      <div class="col-md-9 col-sm-8 col-xs-12">
+        <%= render "potepan/shared/filter" %>
+        <div class="row">
+          <%= render partial: "potepan/shared/product", collection: @products %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%= render "potepan/shared/partners_logo" %>

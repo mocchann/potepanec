@@ -49,9 +49,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rails-erd'
   gem 'annotate'
-  gem 'rails-controller-testing'
   gem 'rubocop-airbnb'
-  gem 'webdrivers'
 end
 
 group :development do

@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spree/testing_support/factories'
 
 include ApplicationHelper
 RSpec.describe ApplicationHelper, type: :helper do
