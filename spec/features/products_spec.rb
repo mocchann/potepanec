@@ -21,7 +21,6 @@ RSpec.feature "Products", type: :feature do
     scenario 'related products must be displayed' do
       within('.productsContent') do
         related_products.each do |related_product|
-          expect(page).to have_selector '.productBox', count: 4
           expect(page).to have_selector '.productBox h5', text: related_product.name
           expect(page).to have_selector '.productBox h3', text: related_product.display_price
           expect(page).to have_link related_product.name
